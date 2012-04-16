@@ -1,0 +1,17 @@
+# Python compiled files
+
+*.pyc
+
+
+# Archivos temporales
+
+*~
+
+# Archivos de imagenes
+
+img/*
+
+# Archivos de datos y backup
+
+*.pkl
+*.bak
