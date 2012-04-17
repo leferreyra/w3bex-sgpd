@@ -1084,6 +1084,9 @@ class MyFrame(wx.Frame):
 
         self.update()
 
+        msgbox = wx.MessageDialog(self, "El archivo de backup se ha cargado satisfactoriamente.", "INFO", style=wx.ICON_INFORMATION)
+        msgbox.ShowModal()
+
     def OnBackup(self, event): # wxGlade: MyFrame.<event_handler>
         
         # Abrir dialogo para seleccionar ruta de destino del archivo de backup
@@ -1095,6 +1098,8 @@ class MyFrame(wx.Frame):
         file_dialog.SetWildcard("Archivos de Backup (*.bak)|*.bak|Todos los archivos (*.*)|*.*")
         if file_dialog.ShowModal() == wx.ID_OK:
                 data.backup(file_dialog.GetPath())
+        msgbox = wx.MessageDialog(self, "Archivo de backup creado satisfactoriamente.", "INFO", style=wx.ICON_INFORMATION)
+        msgbox.ShowModal()
 
 
     def OnClose(self, event): # wxGlade: MyFrame.<event_handler>
