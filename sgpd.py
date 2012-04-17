@@ -79,7 +79,16 @@ class Data():
 		p.dump(self.objects)
 		outfile.close()
 
-	def load(self):
+	def backup(self, f): # f es la ruta donde se va a guardar el backup.
+		"""crear un archivo de back up"""
+		bf = open(f, 'w')
+		bp = pickle.Pickler(bf)
+		bp.dump(self.objects)
+		bf.close()
+
+	def load(self, backup=""):
+		if backup != "":
+			self.file = backup
 		try:
 			infile = open(self.file, "r");
 		except:
@@ -88,3 +97,6 @@ class Data():
 		p = pickle.Unpickler(infile)
 		self.objects = p.load()
 		infile.close()
+		if backup != "":
+			self.file = 'data.pkl'
+			self.save()

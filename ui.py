@@ -23,7 +23,7 @@ class NuevoClienteFrame(wx.Frame):
         kwds["style"] = wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.SYSTEM_MENU
         wx.Frame.__init__(self, *args, **kwds)
         self.panel_1 = wx.Panel(self, -1)
-        self.bitmap_2 = wx.StaticBitmap(self.panel_1, -1, wx.Bitmap("img/titulo_nuevo_cliente.png", wx.BITMAP_TYPE_ANY))
+        self.bitmap_2 = wx.StaticBitmap(self.panel_1, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_nuevo_cliente.png", wx.BITMAP_TYPE_ANY))
         self.static_line_1_copy = wx.StaticLine(self.panel_1, -1)
         self.label_nombre = wx.StaticText(self.panel_1, -1, "Nombre:")
         self.text_nombre = wx.TextCtrl(self.panel_1, -1, "")
@@ -77,7 +77,7 @@ class NuevoClienteFrame(wx.Frame):
         # begin wxGlade: NuevoClienteFrame.__set_properties
         self.SetTitle("Nuevo Cliente")
         _icon = wx.EmptyIcon()
-        _icon.CopyFromBitmap(wx.Bitmap("img/app-icon.png", wx.BITMAP_TYPE_ANY))
+        _icon.CopyFromBitmap(wx.Bitmap("/home/rooter/Projects/SGPD/img/app-icon.png", wx.BITMAP_TYPE_ANY))
         self.SetIcon(_icon)
         self.SetSize((522, 609))
         self.label_nombre.SetMinSize((100, 17))
@@ -253,7 +253,7 @@ class ProductosFrame(wx.Frame):
         kwds["style"] = wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.TAB_TRAVERSAL
         wx.Frame.__init__(self, *args, **kwds)
         self.panel_2 = wx.Panel(self, -1)
-        self.bitmap_3 = wx.StaticBitmap(self.panel_2, -1, wx.Bitmap("img/titulo_agregar_producto.png", wx.BITMAP_TYPE_ANY))
+        self.bitmap_3 = wx.StaticBitmap(self.panel_2, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_agregar_producto.png", wx.BITMAP_TYPE_ANY))
         self.static_line_5 = wx.StaticLine(self.panel_2, -1)
         self.label_producto = wx.StaticText(self.panel_2, -1, "Producto:")
         self.text_nombre = wx.TextCtrl(self.panel_2, -1, "")
@@ -280,7 +280,7 @@ class ProductosFrame(wx.Frame):
         # begin wxGlade: ProductosFrame.__set_properties
         self.SetTitle("Agregar Producto")
         _icon = wx.EmptyIcon()
-        _icon.CopyFromBitmap(wx.Bitmap("img/app-icon.png", wx.BITMAP_TYPE_ANY))
+        _icon.CopyFromBitmap(wx.Bitmap("/home/rooter/Projects/SGPD/img/app-icon.png", wx.BITMAP_TYPE_ANY))
         self.SetIcon(_icon)
         self.SetSize((520, 252))
         self.bitmap_3.SetMinSize((520, 70))
@@ -346,7 +346,7 @@ class CobradoresFrame(wx.Frame):
         # begin wxGlade: CobradoresFrame.__init__
         kwds["style"] = wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.TAB_TRAVERSAL
         wx.Frame.__init__(self, *args, **kwds)
-        self.bitmap_4 = wx.StaticBitmap(self, -1, wx.Bitmap("img/titulo_administrar_cobradores.png", wx.BITMAP_TYPE_ANY))
+        self.bitmap_4 = wx.StaticBitmap(self, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_administrar_cobradores.png", wx.BITMAP_TYPE_ANY))
         self.static_line_5_copy = wx.StaticLine(self, -1)
         self.list_cobradores = wx.ListCtrl(self, -1, style=wx.LC_REPORT|wx.SUNKEN_BORDER)
         self.label_10 = wx.StaticText(self, -1, "Nombre: ")
@@ -372,7 +372,7 @@ class CobradoresFrame(wx.Frame):
         # begin wxGlade: CobradoresFrame.__set_properties
         self.SetTitle("Cobradores")
         _icon = wx.EmptyIcon()
-        _icon.CopyFromBitmap(wx.Bitmap("img/app-icon.png", wx.BITMAP_TYPE_ANY))
+        _icon.CopyFromBitmap(wx.Bitmap("/home/rooter/Projects/SGPD/img/app-icon.png", wx.BITMAP_TYPE_ANY))
         self.SetIcon(_icon)
         self.SetSize((520, 441))
         self.text_nombre.SetMinSize((200, 27))
@@ -443,7 +443,7 @@ class ImprimirPlanillasFrame(wx.Frame):
         # begin wxGlade: ImprimirPlanillasFrame.__init__
         kwds["style"] = wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.TAB_TRAVERSAL
         wx.Frame.__init__(self, *args, **kwds)
-        self.bitmap_5 = wx.StaticBitmap(self, -1, wx.Bitmap("img/titulo_imprimir_planillas.png", wx.BITMAP_TYPE_ANY))
+        self.bitmap_5 = wx.StaticBitmap(self, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_imprimir_planillas.png", wx.BITMAP_TYPE_ANY))
         self.static_line_5_copy_copy = wx.StaticLine(self, -1)
         self.list_planillas = wx.ListCtrl(self, -1, style=wx.LC_LIST|wx.SUNKEN_BORDER)
         self.static_line_4_copy_copy = wx.StaticLine(self, -1)
@@ -458,7 +458,7 @@ class ImprimirPlanillasFrame(wx.Frame):
         # begin wxGlade: ImprimirPlanillasFrame.__set_properties
         self.SetTitle("Imprimir Planillas")
         _icon = wx.EmptyIcon()
-        _icon.CopyFromBitmap(wx.Bitmap("img/app-icon.png", wx.BITMAP_TYPE_ANY))
+        _icon.CopyFromBitmap(wx.Bitmap("/home/rooter/Projects/SGPD/img/app-icon.png", wx.BITMAP_TYPE_ANY))
         self.SetIcon(_icon)
         self.SetSize((520, 389))
         self.button_imprimir.SetFocus()
@@ -492,7 +492,7 @@ class CargarPlanillasFrame(wx.Frame):
         # begin wxGlade: CargarPlanillasFrame.__init__
         kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
-        self.bitmap_6 = wx.StaticBitmap(self, -1, wx.Bitmap("img/cargar_planillas_titulo.png", wx.BITMAP_TYPE_ANY))
+        self.bitmap_6 = wx.StaticBitmap(self, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/cargar_planillas_titulo.png", wx.BITMAP_TYPE_ANY))
         self.static_line_6 = wx.StaticLine(self, -1)
         self.label_cobrador = wx.StaticText(self, -1, "Cobrador:")
         self.combo_cobrador = wx.ComboBox(self, -1, choices=[], style=wx.CB_DROPDOWN|wx.CB_READONLY)
@@ -509,7 +509,7 @@ class CargarPlanillasFrame(wx.Frame):
         # begin wxGlade: CargarPlanillasFrame.__set_properties
         self.SetTitle("Cargar Datos de Planillas")
         _icon = wx.EmptyIcon()
-        _icon.CopyFromBitmap(wx.Bitmap("img/app-icon.png", wx.BITMAP_TYPE_ANY))
+        _icon.CopyFromBitmap(wx.Bitmap("/home/rooter/Projects/SGPD/img/app-icon.png", wx.BITMAP_TYPE_ANY))
         self.SetIcon(_icon)
         self.SetSize((519, 615))
         # end wxGlade
@@ -544,7 +544,7 @@ class ClienteFrame(wx.Frame):
         kwds["style"] = wx.CLOSE_BOX|wx.MINIMIZE_BOX
         wx.Frame.__init__(self, *args, **kwds)
         self.panel_3 = wx.Panel(self, -1)
-        self.bitmap_1 = wx.StaticBitmap(self.panel_3, -1, wx.Bitmap("img/titulo_cliente.png", wx.BITMAP_TYPE_ANY))
+        self.bitmap_1 = wx.StaticBitmap(self.panel_3, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_cliente.png", wx.BITMAP_TYPE_ANY))
         self.static_line_1 = wx.StaticLine(self.panel_3, -1)
         self.label_nombre = wx.StaticText(self.panel_3, -1, "Nombre:")
         self.label_value_nombre = wx.StaticText(self.panel_3, -1, "Leonardo Ezequiel Ferreyra")
@@ -587,7 +587,7 @@ class ClienteFrame(wx.Frame):
         # begin wxGlade: ClienteFrame.__set_properties
         self.SetTitle("Cliente: Leonardo Ferreyra")
         _icon = wx.EmptyIcon()
-        _icon.CopyFromBitmap(wx.Bitmap("img/app-icon.png", wx.BITMAP_TYPE_ANY))
+        _icon.CopyFromBitmap(wx.Bitmap("/home/rooter/Projects/SGPD/img/app-icon.png", wx.BITMAP_TYPE_ANY))
         self.SetIcon(_icon)
         self.SetSize((520, 609))
         self.SetFocus()
@@ -866,14 +866,14 @@ class MyFrame(wx.Frame):
         # Tool Bar
         self.frame_1_toolbar = wx.ToolBar(self, -1, style=wx.TB_HORIZONTAL|wx.TB_DOCKABLE)
         self.SetToolBar(self.frame_1_toolbar)
-        self.frame_1_toolbar.AddLabelTool(1, "Nuevo Cliente", wx.Bitmap("img/new-client.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, "Agregar un Nuevo Cliente", "")
+        self.frame_1_toolbar.AddLabelTool(1, "Nuevo Cliente", wx.Bitmap("/home/rooter/Projects/SGPD/img/new-client.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, "Agregar un Nuevo Cliente", "")
         self.frame_1_toolbar.AddSeparator()
-        self.frame_1_toolbar.AddLabelTool(2, "Imprimir Planillas", wx.Bitmap("img/print-list.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, "Imprimir Planillas de Cobro", "")
-        self.frame_1_toolbar.AddLabelTool(3, "Cargar Planillas", wx.Bitmap("img/load-list.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, "Ingresar los datos de las Planillas de Cobro", "")
+        self.frame_1_toolbar.AddLabelTool(2, "Imprimir Planillas", wx.Bitmap("/home/rooter/Projects/SGPD/img/print-list.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, "Imprimir Planillas de Cobro", "")
+        self.frame_1_toolbar.AddLabelTool(3, "Cargar Planillas", wx.Bitmap("/home/rooter/Projects/SGPD/img/load-list.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, "Ingresar los datos de las Planillas de Cobro", "")
         self.frame_1_toolbar.AddSeparator()
-        self.frame_1_toolbar.AddLabelTool(4, "Generar Informe", wx.Bitmap("img/reports.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, u"Generar informe de saldos al día de hoy", "")
+        self.frame_1_toolbar.AddLabelTool(4, "Generar Informe", wx.Bitmap("/home/rooter/Projects/SGPD/img/reports.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, u"Generar informe de saldos al día de hoy", "")
         self.frame_1_toolbar.AddSeparator()
-        self.frame_1_toolbar.AddLabelTool(5, "Cobradores", wx.Bitmap("img/cobradores.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, "Administrar Cobradores", "")
+        self.frame_1_toolbar.AddLabelTool(5, "Cobradores", wx.Bitmap("/home/rooter/Projects/SGPD/img/cobradores.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, "Administrar Cobradores", "")
         self.frame_1_toolbar.AddSeparator()
         # Tool Bar end
         self.list_todos = wx.ListCtrl(self.todos_panel, -1, style=wx.LC_REPORT|wx.SUNKEN_BORDER)
@@ -886,6 +886,8 @@ class MyFrame(wx.Frame):
         self.__set_properties()
         self.__do_layout()
 
+        self.Bind(wx.EVT_MENU, self.OnCargarBackup, self.cargar_backup)
+        self.Bind(wx.EVT_MENU, self.OnBackup, self.hacer_backup)
         self.Bind(wx.EVT_MENU, self.OnManual, self.manual)
         self.Bind(wx.EVT_MENU, self.OnAbout, self.acerca)
         self.Bind(wx.EVT_TOOL, self.OnNewClient, id=1)
@@ -952,6 +954,13 @@ class MyFrame(wx.Frame):
 
 
     def update(self):
+        # renovamos las referencias a los objetos recargados...
+        global Clientes, Cobradores, Pagos, data
+
+        Clientes = data.objects['clientes']
+        Cobradores = data.objects['cobradores']
+        Pagos = data.objects['pagos']
+
         self.list_todos.DeleteAllItems()
         self.list_morosos.DeleteAllItems()
         self.list_inactivos.DeleteAllItems()
@@ -962,7 +971,7 @@ class MyFrame(wx.Frame):
         # begin wxGlade: MyFrame.__set_properties
         self.SetTitle("Sistema de Gestion de Pagos Diarios")
         _icon = wx.EmptyIcon()
-        _icon.CopyFromBitmap(wx.Bitmap("img/app-icon.png", wx.BITMAP_TYPE_ANY))
+        _icon.CopyFromBitmap(wx.Bitmap("/home/rooter/Projects/SGPD/img/app-icon.png", wx.BITMAP_TYPE_ANY))
         self.SetIcon(_icon)
         self.SetSize((950, 613))
         self.frame_1_toolbar.Realize()
@@ -1061,6 +1070,25 @@ class MyFrame(wx.Frame):
         ClientColumn += self.list_inactivos.GetColumnWidth(3)
         #ClientColumn += self.list_todos.GetColumnWidth(4)
         self.list_inactivos.SetColumnWidth(1, 940 - ClientColumn)
+
+
+    def OnCargarBackup(self, event): # wxGlade: MyFrame.<event_handler>
+        
+        # Abrir dialogo para elegir un archivo de backup..
+
+        file_dialog = wx.FileDialog(self, style = wx.OPEN)
+        if file_dialog.ShowModal() == wx.ID_OK:
+                data.load(backup=file_dialog.GetPath())
+
+        self.update()
+
+    def OnBackup(self, event): # wxGlade: MyFrame.<event_handler>
+        
+        # Abrir dialogo para seleccionar ruta de destino del archivo de backup
+
+        file_dialog = wx.FileDialog(self, style = wx.SAVE)
+        if file_dialog.ShowModal() == wx.ID_OK:
+                data.backup(file_dialog.GetPath())
 
 
 # end of class MyFrame
