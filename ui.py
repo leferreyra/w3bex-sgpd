@@ -736,6 +736,8 @@ class ImprimirPlanillasFrame(wx.Frame):
         self.button_cancelar = wx.Button(self, -1, "Cancelar")
         self.button_imprimir = wx.Button(self, -1, "Imprimir")
 
+        self.cobradores_checks = []
+
         self.__set_properties()
         self.__do_layout()
 
@@ -781,6 +783,15 @@ class ImprimirPlanillasFrame(wx.Frame):
         sizer_11_copy_copy.Add(self.button_imprimir, 0, wx.ALL, 10)
         sizer_10_copy_copy.Add(sizer_11_copy_copy, 0, wx.ALIGN_RIGHT, 0)
         sizer_17.Add(sizer_10_copy_copy, 1, wx.EXPAND, 0)
+
+        # Set checkboxes para cada cobrador
+        global Cobradores
+        for i in Cobradores:
+                checkbox = wx.CheckBox(self, -1, "Planillas para %s" % i.nombre)
+                sizer_check_boxes.Add(checkbox, 0, wx.TOP|wx.EXPAND, 5)
+                self.cobradores_checks.append(checkbox)
+ 
+
         self.SetSizer(sizer_17)
         sizer_17.Fit(self)
         self.Layout()
