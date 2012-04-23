@@ -1,4 +1,4 @@
-	# Sistema de Gestion de pagos Diarios, Por Leonardo Ferreyra w3bex.com
+# Sistema de Gestion de pagos Diarios
 
 import cPickle as pickle, datetime
 
@@ -11,6 +11,28 @@ class Cliente(object):
 		self.telefono = ""
 		self.comentarios = ""
 		self.fecha_creacion = datetime.date.today()
+		self.resto = 0 # diferencia que no alcanza para una cuota completa
+
+	def GetMinProd(self):
+		if len(self.productos)!=0:
+			return min(self.productos, key = lambda x: x.cuota) # b es el producto mas barato
+		else:
+			return None
+    
+	@property
+	def cuota(self):
+		c = 0.00
+
+		for i in self.productos:
+			c += i.saldo_atrasado
+			if (i.cuotas - (i.cuotas_atrasadas + i.cuotas_pagas)) > 0:
+				c += i.cuota
+
+		if self.GetMinProd() is not None:
+			if self.resto > 0 :
+				c += (self.GetMinProd().cuota - self.resto)
+
+		return c
 
 	@property
 	def saldo(self):
@@ -19,8 +41,38 @@ class Cliente(object):
 			x += i.saldo
 		return x
 
+	@property
+	def saldo_atrasado(self):
+		sa = self.resto
+		for i in self.productos:
+			sa += i.cuotas_atrasadas * i.cuota
+		return sa
+
+
 	def esMoroso(self):
-		return True
+		if self.saldo_atrasado != 0:
+			return True
+		else:
+			return False
+
+	def pagar(self, monto):
+
+		b = self.GetMinProd()
+		while monto > 0:
+			if monto >= b.cuota:
+				for p in self.productos:
+					if not p.esta_pagado:
+						if monto >= p.cuota:
+							monto -= p.cuota
+							p.pagar()
+			else:
+				self.resto += monto
+				monto = 0
+
+		if self.resto >= b.cuota:
+			self.resto -= b.cuota
+			b.pagar()
+
 
 
 class Cobrador():
@@ -39,6 +91,45 @@ class Producto(object):
 		self.dia_compra = datetime.date.today()
 
 	@property
+	def saldo_atrasado(self):
+		return self.cuota * self.cuotas_atrasadas
+
+	@property
+	def cuotas_al_dia(self):
+
+		hoy = datetime.date.today()
+		delta = hoy - self.dia_compra
+		dom = 0 # domingos dentro del delta
+		d = datetime.timedelta(days=1)
+
+		for i in xrange(delta.days):
+			if (self.dia_compra + (d*i)).weekday() == 6:
+				dom += 1
+
+		margen = 1
+		if hoy == self.dia_compra:
+			margen = 0 # Margen es la espera hasta un dia despues para declarar un cliente atrazado
+
+		return delta.days - dom - margen
+
+	@property
+	def al_dia(self):
+		if cuotas_atrasadas == 0:
+			return True
+		else:
+			return False
+
+	@property
+	def cuotas_atrasadas(self):
+		if (self.cuotas_al_dia - self.cuotas_pagas) < self.cuotas:
+			if (self.cuotas_al_dia - self.cuotas_pagas) >= 0:
+				return (self.cuotas_al_dia - self.cuotas_pagas)
+			else:
+				return 0
+		else:
+			return self.cuotas - self.cuotas_pagas
+
+	@property
 	def cuota(self):
 		return self.precio / self.cuotas
 
@@ -49,14 +140,21 @@ class Producto(object):
 	def pagar(self, nc = 1):
 		self.cuotas_pagas += nc
 
+	@property
+	def esta_pagado(self):
+		if self.cuotas <= self.cuotas_pagas:
+			return True
+		else:
+			return False
+
+
 
 class Pago():
 
-	def __init__(self, fecha, cliente, monto, cuotas):
+	def __init__(self, fecha, cliente, monto):
 		self.fecha = fecha;
 		self.cliente = cliente;
 		self.monto = monto;
-		self.cuotas = cuotas
 
 class Data():
 	"""Operaciones para guardar Datos y recuperarlos"""
