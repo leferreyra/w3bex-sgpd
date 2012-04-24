@@ -16,7 +16,7 @@ Pagos = data.objects ['pagos']
 class CargarPagoFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: CargarPagoFrame.__init__
-        kwds["style"] = wx.CLOSE_BOX
+        kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.label_info_cliente = wx.StaticText(self, -1, "Cliente: #453 (Leonardo Ferreyra)")
         self.text_cuota = wx.TextCtrl(self, -1, "9.7", style=wx.TE_CENTRE)
@@ -94,7 +94,7 @@ class CargarPagoFrame(wx.Frame):
 class AboutFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: AboutFrame.__init__
-        kwds["style"] = wx.CLOSE_BOX
+        kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
         self.bitmap_7 = wx.StaticBitmap(self, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/about.png", wx.BITMAP_TYPE_ANY))
         self.button_4 = wx.Button(self, -1, "Licencia")
@@ -161,7 +161,7 @@ class CobradoresTransferirFrame(wx.Frame):
         # Cambiar la lista choices de los parametros del radio_box por choices (la variable)
 
         # begin wxGlade: CobradoresTransferirFrame.__init__
-        kwds["style"] = wx.ICONIZE|wx.MINIMIZE|wx.CLOSE_BOX
+        kwds["style"] = wx.ICONIZE|wx.CAPTION|wx.MINIMIZE|wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.MAXIMIZE_BOX|wx.SYSTEM_MENU|wx.RESIZE_BORDER|wx.CLIP_CHILDREN
         wx.Frame.__init__(self, *args, **kwds)
         self.label_2 = wx.StaticText(self, -1, "El cobrador que desea eliminar tiene clientes asignados. \nAntes de eliminarlo debe transferir sus clientes a otro/s cobrador/es.", style=wx.ST_NO_AUTORESIZE)
         self.radio_box_1 = wx.RadioBox(self, -1, "A quien desea transferir los clientes.", choices=["Repartir entre los cobradores restantes", "Transferir al cobrador que menos clientes tiene"], majorDimension=0, style=wx.RA_SPECIFY_ROWS)
@@ -253,31 +253,30 @@ class CobradoresTransferirFrame(wx.Frame):
 class NuevoClienteFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: NuevoClienteFrame.__init__
-        kwds["style"] = wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.SYSTEM_MENU
+        kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
-        self.panel_1 = wx.Panel(self, -1)
-        self.bitmap_2 = wx.StaticBitmap(self.panel_1, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_nuevo_cliente.png", wx.BITMAP_TYPE_ANY))
-        self.static_line_1_copy = wx.StaticLine(self.panel_1, -1)
-        self.label_nombre = wx.StaticText(self.panel_1, -1, "Nombre:")
-        self.text_nombre = wx.TextCtrl(self.panel_1, -1, "")
-        self.label_numero = wx.StaticText(self.panel_1, -1, u"Número: ")
-        self.text_numero = wx.TextCtrl(self.panel_1, -1, "")
-        self.label_telefono = wx.StaticText(self.panel_1, -1, u"Teléfono: ")
-        self.text_telefono = wx.TextCtrl(self.panel_1, -1, "")
-        self.label_direccion = wx.StaticText(self.panel_1, -1, u"Dirección:")
-        self.text_direccion = wx.TextCtrl(self.panel_1, -1, "")
-        self.label_saldo = wx.StaticText(self.panel_1, -1, "Saldo:")
-        self.label_value_saldo = wx.StaticText(self.panel_1, -1, "$ 0")
-        self.label_cobrador = wx.StaticText(self.panel_1, -1, "Cobrador")
-        self.combo_cobrador = wx.ComboBox(self.panel_1, -1, choices=["Roberto", "Jose", "Javier", "Maria", "Pedro", "Marcos"], style=wx.CB_DROPDOWN|wx.CB_READONLY)
-        self.label_comentarios = wx.StaticText(self.panel_1, -1, "Comentarios")
-        self.text_comentarios = wx.TextCtrl(self.panel_1, -1, "", style=wx.TE_MULTILINE)
-        self.list_productos = wx.ListCtrl(self.panel_1, -1, style=wx.LC_REPORT|wx.SUNKEN_BORDER)
-        self.button_agregar_producto = wx.Button(self.panel_1, -1, "Agregar Producto")
-        self.button_quitar_producto = wx.Button(self.panel_1, -1, "Quitar Producto")
-        self.static_line_3_copy = wx.StaticLine(self.panel_1, -1)
-        self.button_crear = wx.Button(self.panel_1, -1, "Crear")
-        self.button_cerrar = wx.Button(self.panel_1, -1, "Cerrar")
+        self.bitmap_2 = wx.StaticBitmap(self, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_nuevo_cliente.png", wx.BITMAP_TYPE_ANY))
+        self.static_line_1_copy = wx.StaticLine(self, -1)
+        self.label_nombre = wx.StaticText(self, -1, "Nombre:")
+        self.text_nombre = wx.TextCtrl(self, -1, "")
+        self.label_numero = wx.StaticText(self, -1, u"Número: ")
+        self.text_numero = wx.TextCtrl(self, -1, "")
+        self.label_telefono = wx.StaticText(self, -1, u"Teléfono: ")
+        self.text_telefono = wx.TextCtrl(self, -1, "")
+        self.label_direccion = wx.StaticText(self, -1, u"Dirección:")
+        self.text_direccion = wx.TextCtrl(self, -1, "")
+        self.label_saldo = wx.StaticText(self, -1, "Saldo:")
+        self.label_value_saldo = wx.StaticText(self, -1, "$ 0")
+        self.label_cobrador_copy_1 = wx.StaticText(self, -1, "Cobrador")
+        self.combo_cobrador = wx.ComboBox(self, -1, choices=["Roberto", "Jose", "Javier", "Maria", "Pedro", "Marcos"], style=wx.CB_DROPDOWN|wx.CB_READONLY)
+        self.label_comentarios = wx.StaticText(self, -1, "Comentarios")
+        self.text_comentarios = wx.TextCtrl(self, -1, "", style=wx.TE_MULTILINE)
+        self.list_productos = wx.ListCtrl(self, -1, style=wx.LC_REPORT|wx.SUNKEN_BORDER)
+        self.button_agregar_producto = wx.Button(self, -1, "Agregar Producto")
+        self.button_quitar_producto = wx.Button(self, -1, "Quitar Producto")
+        self.static_line_3_copy = wx.StaticLine(self, -1)
+        self.button_crear = wx.Button(self, -1, "Crear")
+        self.button_cerrar = wx.Button(self, -1, "Cerrar")
 
         self.__set_properties()
         self.__do_layout()
@@ -312,7 +311,7 @@ class NuevoClienteFrame(wx.Frame):
         _icon = wx.EmptyIcon()
         _icon.CopyFromBitmap(wx.Bitmap("/home/rooter/Projects/SGPD/img/app-icon.png", wx.BITMAP_TYPE_ANY))
         self.SetIcon(_icon)
-        self.SetSize((522, 609))
+        self.SetSize((522, 632))
         self.label_nombre.SetMinSize((100, 17))
         self.text_nombre.SetMinSize((370, 27))
         self.text_nombre.SetFocus()
@@ -325,7 +324,7 @@ class NuevoClienteFrame(wx.Frame):
         self.label_saldo.SetMinSize((100, 17))
         self.label_value_saldo.SetMinSize((370, 18))
         self.label_value_saldo.SetFont(wx.Font(11, wx.DEFAULT, wx.NORMAL, wx.BOLD, 0, ""))
-        self.label_cobrador.SetMinSize((100, 17))
+        self.label_cobrador_copy_1.SetMinSize((100, 17))
         self.combo_cobrador.SetSelection(3)
         self.label_comentarios.SetMinSize((100, 17))
         self.text_comentarios.SetMinSize((350, 75))
@@ -335,7 +334,6 @@ class NuevoClienteFrame(wx.Frame):
 
     def __do_layout(self):
         # begin wxGlade: NuevoClienteFrame.__do_layout
-        sizer_21 = wx.BoxSizer(wx.VERTICAL)
         sizer_4_copy = wx.BoxSizer(wx.VERTICAL)
         sizer_13_copy = wx.BoxSizer(wx.HORIZONTAL)
         sizer_3_copy_1 = wx.BoxSizer(wx.VERTICAL)
@@ -364,7 +362,7 @@ class NuevoClienteFrame(wx.Frame):
         sizer_3_copy_copy_copy_copy.Add(self.label_saldo, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
         sizer_3_copy_copy_copy_copy.Add(self.label_value_saldo, 0, wx.ALIGN_CENTER_VERTICAL, 0)
         sizer_2_copy.Add(sizer_3_copy_copy_copy_copy, 0, wx.ALL|wx.EXPAND, 10)
-        sizer_3_copy_copy_2_copy.Add(self.label_cobrador, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
+        sizer_3_copy_copy_2_copy.Add(self.label_cobrador_copy_1, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
         sizer_3_copy_copy_2_copy.Add(self.combo_cobrador, 0, 0, 0)
         sizer_2_copy.Add(sizer_3_copy_copy_2_copy, 0, wx.ALL|wx.EXPAND, 10)
         sizer_3_copy_copy_2_copy_1_copy.Add(self.label_comentarios, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
@@ -381,9 +379,7 @@ class NuevoClienteFrame(wx.Frame):
         sizer_13_copy.Add(self.button_crear, 0, wx.LEFT|wx.TOP|wx.BOTTOM, 10)
         sizer_13_copy.Add(self.button_cerrar, 0, wx.ALL, 10)
         sizer_4_copy.Add(sizer_13_copy, 0, wx.ALIGN_RIGHT, 0)
-        self.panel_1.SetSizer(sizer_4_copy)
-        sizer_21.Add(self.panel_1, 1, wx.EXPAND, 0)
-        self.SetSizer(sizer_21)
+        self.SetSizer(sizer_4_copy)
         self.Layout()
         self.Centre()
         # end wxGlade
@@ -487,7 +483,7 @@ class NuevoClienteFrame(wx.Frame):
 class ProductosFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: ProductosFrame.__init__
-        kwds["style"] = wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.TAB_TRAVERSAL
+        kwds["style"] = wx.CAPTION|wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.MAXIMIZE_BOX|wx.SYSTEM_MENU|wx.RESIZE_BORDER|wx.TAB_TRAVERSAL|wx.CLIP_CHILDREN
         wx.Frame.__init__(self, *args, **kwds)
         self.panel_2 = wx.Panel(self, -1)
         self.bitmap_3 = wx.StaticBitmap(self.panel_2, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_agregar_producto.png", wx.BITMAP_TYPE_ANY))
@@ -592,7 +588,7 @@ class ProductosFrame(wx.Frame):
 class CobradoresFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: CobradoresFrame.__init__
-        kwds["style"] = wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.TAB_TRAVERSAL
+        kwds["style"] = wx.CAPTION|wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.MAXIMIZE_BOX|wx.SYSTEM_MENU|wx.RESIZE_BORDER|wx.TAB_TRAVERSAL|wx.CLIP_CHILDREN
         wx.Frame.__init__(self, *args, **kwds)
         self.bitmap_4 = wx.StaticBitmap(self, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_administrar_cobradores.png", wx.BITMAP_TYPE_ANY))
         self.static_line_5_copy = wx.StaticLine(self, -1)
@@ -726,7 +722,7 @@ class CobradoresFrame(wx.Frame):
 class ImprimirPlanillasFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: ImprimirPlanillasFrame.__init__
-        kwds["style"] = wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.TAB_TRAVERSAL
+        kwds["style"] = wx.CAPTION|wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.MAXIMIZE_BOX|wx.SYSTEM_MENU|wx.RESIZE_BORDER|wx.TAB_TRAVERSAL|wx.CLIP_CHILDREN
         wx.Frame.__init__(self, *args, **kwds)
         self.bitmap_5 = wx.StaticBitmap(self, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/imprimir_planillas_titulo.png", wx.BITMAP_TYPE_ANY))
         self.static_line_5_copy_copy = wx.StaticLine(self, -1)
@@ -735,8 +731,6 @@ class ImprimirPlanillasFrame(wx.Frame):
         self.static_line_4_copy_copy = wx.StaticLine(self, -1)
         self.button_cancelar = wx.Button(self, -1, "Cancelar")
         self.button_imprimir = wx.Button(self, -1, "Imprimir")
-
-        self.cobradores_checks = []
 
         self.__set_properties()
         self.__do_layout()
@@ -783,15 +777,6 @@ class ImprimirPlanillasFrame(wx.Frame):
         sizer_11_copy_copy.Add(self.button_imprimir, 0, wx.ALL, 10)
         sizer_10_copy_copy.Add(sizer_11_copy_copy, 0, wx.ALIGN_RIGHT, 0)
         sizer_17.Add(sizer_10_copy_copy, 1, wx.EXPAND, 0)
-
-        # Set checkboxes para cada cobrador
-        global Cobradores
-        for i in Cobradores:
-                checkbox = wx.CheckBox(self, -1, "Planillas para %s" % i.nombre)
-                sizer_check_boxes.Add(checkbox, 0, wx.TOP|wx.EXPAND, 5)
-                self.cobradores_checks.append(checkbox)
- 
-
         self.SetSizer(sizer_17)
         sizer_17.Fit(self)
         self.Layout()
@@ -849,7 +834,7 @@ class ImprimirPlanillasFrame(wx.Frame):
 class CargarPlanillasFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: CargarPlanillasFrame.__init__
-        kwds["style"] = wx.ICONIZE|wx.MINIMIZE|wx.CLOSE_BOX
+        kwds["style"] = wx.ICONIZE|wx.CAPTION|wx.MINIMIZE|wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.MAXIMIZE_BOX|wx.SYSTEM_MENU|wx.RESIZE_BORDER|wx.CLIP_CHILDREN
         wx.Frame.__init__(self, *args, **kwds)
         self.bitmap_6 = wx.StaticBitmap(self, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/cargar_planillas_titulo.png", wx.BITMAP_TYPE_ANY))
         self.static_line_6 = wx.StaticLine(self, -1)
@@ -945,36 +930,35 @@ class CargarPlanillasFrame(wx.Frame):
 class ClienteFrame(wx.Frame):
     def __init__(self, *args, **kwds):
         # begin wxGlade: ClienteFrame.__init__
-        kwds["style"] = wx.CLOSE_BOX|wx.MINIMIZE_BOX
+        kwds["style"] = wx.DEFAULT_FRAME_STYLE
         wx.Frame.__init__(self, *args, **kwds)
-        self.panel_3 = wx.Panel(self, -1)
-        self.bitmap_1 = wx.StaticBitmap(self.panel_3, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_cliente.png", wx.BITMAP_TYPE_ANY))
-        self.static_line_1 = wx.StaticLine(self.panel_3, -1)
-        self.label_nombre = wx.StaticText(self.panel_3, -1, "Nombre:")
-        self.label_value_nombre = wx.StaticText(self.panel_3, -1, "Leonardo Ezequiel Ferreyra")
-        self.label_telefono = wx.StaticText(self.panel_3, -1, u"Teléfono: ")
-        self.label_value_telefono = wx.StaticText(self.panel_3, -1, "4467367")
-        self.label_direccion = wx.StaticText(self.panel_3, -1, u"Dirección:")
-        self.label_value_direccion = wx.StaticText(self.panel_3, -1, "Mz 86 Pc 4 B 263 Viv. Fontana")
-        self.label_saldo_copy = wx.StaticText(self.panel_3, -1, "Saldo:")
-        self.label_value_saldo = wx.StaticText(self.panel_3, -1, "$2345")
-        self.button_1 = wx.Button(self.panel_3, -1, "Pagos")
-        self.label_cobrador = wx.StaticText(self.panel_3, -1, "Cobrador")
-        self.combo_cobrador = wx.ComboBox(self.panel_3, -1, choices=["Roberto", "Jose", "Javier", "Maria", "Pedro", "Marcos"], style=wx.CB_DROPDOWN|wx.CB_READONLY)
-        self.label_comentarios = wx.StaticText(self.panel_3, -1, "Comentarios")
-        self.text_comentarios = wx.TextCtrl(self.panel_3, -1, "", style=wx.TE_MULTILINE)
-        self.list_productos = wx.ListCtrl(self.panel_3, -1, style=wx.LC_REPORT|wx.SUNKEN_BORDER)
-        self.button_agregar_producto = wx.Button(self.panel_3, -1, "Agregar Producto")
-        self.button_quitar_producto = wx.Button(self.panel_3, -1, "Quitar Producto")
-        self.static_line_3 = wx.StaticLine(self.panel_3, -1)
-        self.button_eliminar = wx.Button(self.panel_3, -1, "Eliminar")
-        self.button_editar = wx.Button(self.panel_3, -1, "Guardar")
-        self.button_cerrar = wx.Button(self.panel_3, -1, "Cerrar")
+        self.bitmap_1 = wx.StaticBitmap(self, -1, wx.Bitmap("/home/rooter/Projects/SGPD/img/titulo_cliente.png", wx.BITMAP_TYPE_ANY))
+        self.static_line_1 = wx.StaticLine(self, -1)
+        self.label_nombre_copy = wx.StaticText(self, -1, "Nombre:")
+        self.label_value_nombre = wx.StaticText(self, -1, "Leonardo Ezequiel Ferreyra")
+        self.label_telefono_copy = wx.StaticText(self, -1, u"Teléfono: ")
+        self.label_value_telefono = wx.StaticText(self, -1, "4467367")
+        self.label_direccion_copy = wx.StaticText(self, -1, u"Dirección:")
+        self.label_value_direccion = wx.StaticText(self, -1, "Mz 86 Pc 4 B 263 Viv. Fontana")
+        self.label_saldo_copy = wx.StaticText(self, -1, "Saldo:")
+        self.label_value_saldo = wx.StaticText(self, -1, "$2345")
+        self.button_pagos = wx.Button(self, -1, "Pagos")
+        self.label_cobrador_copy = wx.StaticText(self, -1, "Cobrador")
+        self.combo_cobrador = wx.ComboBox(self, -1, choices=["Roberto", "Jose", "Javier", "Maria", "Pedro", "Marcos"], style=wx.CB_DROPDOWN|wx.CB_READONLY)
+        self.label_comentarios_copy = wx.StaticText(self, -1, "Comentarios")
+        self.text_comentarios = wx.TextCtrl(self, -1, "", style=wx.TE_MULTILINE)
+        self.list_productos = wx.ListCtrl(self, -1, style=wx.LC_REPORT|wx.SUNKEN_BORDER)
+        self.button_agregar_producto = wx.Button(self, -1, "Agregar Producto")
+        self.button_quitar_producto = wx.Button(self, -1, "Quitar Producto")
+        self.static_line_3 = wx.StaticLine(self, -1)
+        self.button_eliminar = wx.Button(self, -1, "Eliminar")
+        self.button_editar = wx.Button(self, -1, "Guardar")
+        self.button_cerrar = wx.Button(self, -1, "Cerrar")
 
         self.__set_properties()
         self.__do_layout()
 
-        self.Bind(wx.EVT_BUTTON, self.OnPagos, self.button_1)
+        self.Bind(wx.EVT_BUTTON, self.OnPagos, self.button_pagos)
         self.Bind(wx.EVT_COMBOBOX, self.OnCambiarCobrador, self.combo_cobrador)
         self.Bind(wx.EVT_TEXT, self.OnComentarios, self.text_comentarios)
         self.Bind(wx.EVT_BUTTON, self.OnAgregarProducto, self.button_agregar_producto)
@@ -995,20 +979,20 @@ class ClienteFrame(wx.Frame):
         self.SetIcon(_icon)
         self.SetSize((520, 609))
         self.SetFocus()
-        self.label_nombre.SetMinSize((100, 17))
+        self.label_nombre_copy.SetMinSize((100, 17))
         self.label_value_nombre.SetMinSize((370, 18))
         self.label_value_nombre.SetFont(wx.Font(11, wx.DEFAULT, wx.NORMAL, wx.BOLD, 0, ""))
-        self.label_telefono.SetMinSize((100, 17))
+        self.label_telefono_copy.SetMinSize((100, 17))
         self.label_value_telefono.SetMinSize((370, 18))
         self.label_value_telefono.SetFont(wx.Font(11, wx.DEFAULT, wx.NORMAL, wx.BOLD, 0, ""))
-        self.label_direccion.SetMinSize((100, 17))
+        self.label_direccion_copy.SetMinSize((100, 17))
         self.label_value_direccion.SetFont(wx.Font(11, wx.DEFAULT, wx.NORMAL, wx.BOLD, 0, ""))
         self.label_saldo_copy.SetMinSize((100, 17))
         self.label_value_saldo.SetMinSize((100, 18))
         self.label_value_saldo.SetFont(wx.Font(11, wx.DEFAULT, wx.NORMAL, wx.BOLD, 0, ""))
-        self.label_cobrador.SetMinSize((100, 17))
+        self.label_cobrador_copy.SetMinSize((100, 17))
         self.combo_cobrador.SetSelection(3)
-        self.label_comentarios.SetMinSize((100, 17))
+        self.label_comentarios_copy.SetMinSize((100, 17))
         self.text_comentarios.SetMinSize((350, 75))
         self.button_editar.Enable(False)
         self.button_cerrar.SetFocus()
@@ -1017,7 +1001,6 @@ class ClienteFrame(wx.Frame):
 
     def __do_layout(self):
         # begin wxGlade: ClienteFrame.__do_layout
-        sizer_23 = wx.BoxSizer(wx.VERTICAL)
         sizer_4 = wx.BoxSizer(wx.VERTICAL)
         sizer_13 = wx.BoxSizer(wx.HORIZONTAL)
         sizer_3 = wx.BoxSizer(wx.VERTICAL)
@@ -1032,23 +1015,23 @@ class ClienteFrame(wx.Frame):
         sizer_3_copy = wx.BoxSizer(wx.HORIZONTAL)
         sizer_4.Add(self.bitmap_1, 0, 0, 0)
         sizer_3.Add(self.static_line_1, 0, wx.EXPAND, 0)
-        sizer_3_copy.Add(self.label_nombre, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
+        sizer_3_copy.Add(self.label_nombre_copy, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
         sizer_3_copy.Add(self.label_value_nombre, 0, 0, 0)
         sizer_2.Add(sizer_3_copy, 0, wx.ALL|wx.EXPAND, 10)
-        sizer_3_copy_copy.Add(self.label_telefono, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
+        sizer_3_copy_copy.Add(self.label_telefono_copy, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
         sizer_3_copy_copy.Add(self.label_value_telefono, 0, 0, 0)
         sizer_2.Add(sizer_3_copy_copy, 0, wx.ALL|wx.EXPAND, 10)
-        sizer_3_copy_copy_1.Add(self.label_direccion, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
+        sizer_3_copy_copy_1.Add(self.label_direccion_copy, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
         sizer_3_copy_copy_1.Add(self.label_value_direccion, 0, 0, 0)
         sizer_2.Add(sizer_3_copy_copy_1, 0, wx.ALL|wx.EXPAND, 10)
         sizer_3_copy_copy_copy.Add(self.label_saldo_copy, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
         sizer_3_copy_copy_copy.Add(self.label_value_saldo, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
-        sizer_3_copy_copy_copy.Add(self.button_1, 0, 0, 0)
+        sizer_3_copy_copy_copy.Add(self.button_pagos, 0, 0, 0)
         sizer_2.Add(sizer_3_copy_copy_copy, 0, wx.ALL|wx.EXPAND, 10)
-        sizer_3_copy_copy_2.Add(self.label_cobrador, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
+        sizer_3_copy_copy_2.Add(self.label_cobrador_copy, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
         sizer_3_copy_copy_2.Add(self.combo_cobrador, 0, 0, 0)
         sizer_2.Add(sizer_3_copy_copy_2, 0, wx.ALL|wx.EXPAND, 10)
-        sizer_3_copy_copy_2_copy_1.Add(self.label_comentarios, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
+        sizer_3_copy_copy_2_copy_1.Add(self.label_comentarios_copy, 0, wx.LEFT|wx.ALIGN_CENTER_VERTICAL, 15)
         sizer_3_copy_copy_2_copy_1.Add(self.text_comentarios, 0, 0, 0)
         sizer_2.Add(sizer_3_copy_copy_2_copy_1, 0, wx.ALL|wx.EXPAND, 10)
         sizer_8.Add(self.list_productos, 1, wx.EXPAND, 0)
@@ -1063,9 +1046,7 @@ class ClienteFrame(wx.Frame):
         sizer_13.Add(self.button_editar, 0, wx.TOP|wx.BOTTOM, 10)
         sizer_13.Add(self.button_cerrar, 0, wx.ALL, 10)
         sizer_4.Add(sizer_13, 0, wx.ALIGN_RIGHT, 0)
-        self.panel_3.SetSizer(sizer_4)
-        sizer_23.Add(self.panel_3, 1, wx.EXPAND, 0)
-        self.SetSizer(sizer_23)
+        self.SetSizer(sizer_4)
         self.Layout()
         self.Centre()
         # end wxGlade
@@ -1291,7 +1272,7 @@ class MyFrame(wx.Frame):
         self.frame_1_toolbar.AddLabelTool(5, "Cobradores", wx.Bitmap("/home/rooter/Projects/SGPD/img/cobradores.png", wx.BITMAP_TYPE_ANY), wx.NullBitmap, wx.ITEM_NORMAL, "Administrar Cobradores", "")
         self.frame_1_toolbar.AddSeparator()
         # Tool Bar end
-        self.list_todos = wx.ListCtrl(self.todos_panel, -1, style=wx.LC_REPORT|wx.SUNKEN_BORDER)
+        self.list_todos = wx.ListCtrl(self.todos_panel, -1, style=wx.LC_REPORT|wx.LC_AUTOARRANGE)
         self.list_inactivos = wx.ListCtrl(self.morosos_panel, -1, style=wx.LC_REPORT|wx.SUNKEN_BORDER)
         self.list_morosos = wx.ListCtrl(self.notebook_1_pane_3, -1, style=wx.LC_REPORT|wx.SUNKEN_BORDER)
         self.label_total = wx.StaticText(self, -1, "TOTAL A COBRAR: $15350")
@@ -1317,7 +1298,8 @@ class MyFrame(wx.Frame):
         self.Bind(wx.EVT_LIST_ITEM_ACTIVATED, self.OnInactivosListActivated, self.list_inactivos)
         self.Bind(wx.EVT_LIST_ITEM_ACTIVATED, self.OnMorososListActivated, self.list_morosos)
         # end wxGlade
-        self.Bind(wx.EVT_PAINT, self.OnPaint)
+
+        
 
         # Insertar columnas en las tablas, de la ventana Principal
         self.list_todos.InsertColumn(-1, "N⁰")
@@ -1335,6 +1317,24 @@ class MyFrame(wx.Frame):
         self.list_morosos.InsertColumn(-1, "Productos")
         self.list_morosos.InsertColumn(-1, "Monto Atrasado", width=200)
         self.list_morosos.InsertColumn(-1, "Saldo",width=200)
+
+        ClientColumn = self.list_todos.GetColumnWidth(0)
+        ClientColumn += self.list_todos.GetColumnWidth(2)
+        ClientColumn += self.list_todos.GetColumnWidth(3)
+        #ClientColumn += self.list_todos.GetColumnWidth(4)
+        self.list_todos.SetColumnWidth(1, 940 - ClientColumn)
+
+        ClientColumn = self.list_morosos.GetColumnWidth(0)
+        ClientColumn += self.list_morosos.GetColumnWidth(2)
+        ClientColumn += self.list_morosos.GetColumnWidth(3)
+        ClientColumn += self.list_morosos.GetColumnWidth(4)
+        self.list_morosos.SetColumnWidth(1, 940 - ClientColumn)
+
+        ClientColumn = self.list_inactivos.GetColumnWidth(0)
+        ClientColumn += self.list_inactivos.GetColumnWidth(2)
+        ClientColumn += self.list_inactivos.GetColumnWidth(3)
+        #ClientColumn += self.list_todos.GetColumnWidth(4)
+        self.list_inactivos.SetColumnWidth(1, 940 - ClientColumn)
 
 
         # Listas de clientes
@@ -1494,25 +1494,6 @@ class MyFrame(wx.Frame):
         client_frame = ClienteFrame(self, -1, "")
         client_frame.setCliente(Clientes[event.GetIndex()])
         client_frame.Show()
-
-    def OnPaint(self, event):
-        ClientColumn = self.list_todos.GetColumnWidth(0)
-        ClientColumn += self.list_todos.GetColumnWidth(2)
-        ClientColumn += self.list_todos.GetColumnWidth(3)
-        #ClientColumn += self.list_todos.GetColumnWidth(4)
-        self.list_todos.SetColumnWidth(1, 940 - ClientColumn)
-
-        ClientColumn = self.list_morosos.GetColumnWidth(0)
-        ClientColumn += self.list_morosos.GetColumnWidth(2)
-        ClientColumn += self.list_morosos.GetColumnWidth(3)
-        ClientColumn += self.list_morosos.GetColumnWidth(4)
-        self.list_morosos.SetColumnWidth(1, 940 - ClientColumn)
-
-        ClientColumn = self.list_inactivos.GetColumnWidth(0)
-        ClientColumn += self.list_inactivos.GetColumnWidth(2)
-        ClientColumn += self.list_inactivos.GetColumnWidth(3)
-        #ClientColumn += self.list_todos.GetColumnWidth(4)
-        self.list_inactivos.SetColumnWidth(1, 940 - ClientColumn)
 
 
     def OnCargarBackup(self, event): # wxGlade: MyFrame.<event_handler>
