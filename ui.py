@@ -141,7 +141,12 @@ class CargarPagoFrame(wx.Frame):
     def OnCargar(self, event): # wxGlade: CargarPagoFrame.<event_handler>
         self.parent.pagos.append([self.cobrador.clientes[self.cc], float(self.text_cuota.GetValue())])
         self.parent.updateTotal()
+
         self.cc += 1
+
+        while (self.cc < len(self.cobrador.clientes)) and (self.cobrador.clientes[self.cc].saldo == 0):
+                self.cc += 1
+
         if self.cc == len(self.cobrador.clientes):
                 self.Close()
         else:
