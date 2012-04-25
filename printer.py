@@ -67,3 +67,48 @@ class PlanillaCobradorMorosos():
         html += "</table></html>"
 
         return html
+
+class InformeSaldos():
+    def __init__(self, clientes):
+        self.clientes = clientes
+        self.printer = Printer()
+        self.doc_name = "Informe de Saldos de clientes al dia %d/%d/%d" % (datetime.date.today().day, datetime.date.today().month, datetime.date.today().year)
+
+    def Imprimir(self):
+        self.printer.Print(self.GetHtml(), self.doc_name)
+
+    def VistaPrevia(self):
+        self.printer.PreviewText(self.GetHtml(), self.doc_name)
+
+    def GetHtml(self):
+        html = "<html><table width=100\% cellpadding=6 border=1 frame=border cellspacing=0'>"
+        html += "<tr><th>Nro</th><th>Nombre</th><th>Productos</th><th>Saldo</th></tr>"
+        for i in self.clientes:
+            if i.saldo > 0:
+                html += "<tr><td width=50>%d</td><td>%s</td><td width=100>%d</td><td>$%g</td></tr>" % (i.id, i.nombre, len(i.productos), i.saldo)
+        html += "</table></html>"
+
+        return html
+
+
+class InformeSaldosAtrasados():
+    def __init__(self, clientes):
+        self.clientes = clientes
+        self.printer = Printer()
+        self.doc_name = "Informe de Saldos Atrasados de clientes morosos al dia %d/%d/%d" % (datetime.date.today().day, datetime.date.today().month, datetime.date.today().year)
+
+    def Imprimir(self):
+        self.printer.Print(self.GetHtml(), self.doc_name)
+
+    def VistaPrevia(self):
+        self.printer.PreviewText(self.GetHtml(), self.doc_name)
+
+    def GetHtml(self):
+        html = "<html><table width=100\% cellpadding=6 border=1 frame=border cellspacing=0'>"
+        html += "<tr><th>Nro</th><th>Nombre</th><th>Saldo</th><th>Atrasado</th></tr>"
+        for i in self.clientes:
+            if i.saldo_atrasado > 0:
+                html += "<tr><td width=50>%d</td><td>%s</td><td width=100>$%g</td><td>$%g</td></tr>" % (i.id, i.nombre, i.saldo, i.saldo_atrasado)
+        html += "</table></html>"
+
+        return html

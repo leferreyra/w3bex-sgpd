@@ -18,19 +18,25 @@ class Cliente(object):
 			return min(self.productos, key = lambda x: x.cuota) # b es el producto mas barato
 		else:
 			return None
+
+	def GetMaxProdAtr(self):
+		if len(self.productos)!=0:
+			return max(self.productos, key = lambda x: x.cuotas_atrasadas) # el producto mas atrasado
+		else:
+			return None 
     
 	@property
 	def cuota(self):
 		c = 0.00
-
 		for i in self.productos:
 			c += i.saldo_atrasado
-			if (i.cuotas - (i.cuotas_atrasadas + i.cuotas_pagas)) > 0:
+			if (i.cuotas_pagas + i.cuotas_atrasadas + 1) < i.cuotas:
 				c += i.cuota
-
-		if self.GetMinProd() is not None:
-			if self.resto > 0 :
-				c += (self.GetMinProd().cuota - self.resto)
+			else:
+				if self.resto > 0 :
+					c += (i.cuota - self.resto)
+				else:
+					c += i.cuota
 
 		return c
 
@@ -56,20 +62,31 @@ class Cliente(object):
 			return False
 
 	def pagar(self, monto):
-
 		b = self.GetMinProd()
+		for p in self.productos:
+			a = self.GetMaxProdAtr() # Primero cobramos los atrasos, del mas atrasado al menos atrasado.
+			if monto >= a.saldo_atrasado and a.saldo_atrasado > 0:
+				#print "pagando %g atrazo del producto %s" % (a.saldo_atrasado, a.nombre)
+				monto -= a.saldo_atrasado
+				a.pagar(a.cuotas_atrasadas)
+
+		
 		while monto > 0:
 			if monto >= b.cuota:
 				for p in self.productos:
 					if not p.esta_pagado:
 						if monto >= p.cuota:
+							#print "pagando %g por el producto %s por cuota nomal" % (p.cuota, p.nombre)
 							monto -= p.cuota
 							p.pagar()
 			else:
+				print "sobro %g" % monto
 				self.resto += monto
 				monto = 0
 
+		# Si el resto alcanza para pagar la cuota mas barata.. la cobramos.
 		if self.resto >= b.cuota:
+			#print "lo que sobro del pago mas el resto %g alcanza para la cuota de %s" % ( self.resto, b.nombre)
 			self.resto -= b.cuota
 			b.pagar()
 
