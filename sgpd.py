@@ -98,6 +98,13 @@ class Cobrador():
 		self.nombre = nombre;
 		self.clientes = [];
 
+	def GetClientesMorosos(self):
+		m = []
+		for i in self.clientes:
+			if i.esMoroso():
+				m.append(i)
+		return m
+
 class Producto(object):
 	
 	def __init__(self, nombre, precio, cuotas):
@@ -163,6 +170,7 @@ class Producto(object):
 			return True
 		else:
 			return False
+
 
 
 
