@@ -285,6 +285,8 @@ class CobradoresTransferirFrame(wx.Frame):
         global Cobradores, data
         opcion = self.radio_box_1.GetSelection()
         
+        Cobradores.remove(self.cobrador)
+        
         if opcion == 0:
                 # Repartir los clientes entre los demas
                 print "Repartiendo entre clientes..."
@@ -309,7 +311,7 @@ class CobradoresTransferirFrame(wx.Frame):
                         c.cobrador = self.opciones[opcion - 2]
                         self.opciones[opcion - 2].clientes.append(c)
 
-        Cobradores.remove(self.cobrador)
+        
         self.parent.transfer_frames.remove(self)
         self.parent.update()
         self.Close()
