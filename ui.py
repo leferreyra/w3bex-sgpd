@@ -780,16 +780,23 @@ class CobradoresFrame(wx.Frame):
     def OnQuitar(self, event): # wxGlade: CobradoresFrame.<event_handler>
         
         global Cobradores, data
-        cobrador = Cobradores[self.list_cobradores.GetFocusedItem()]
-        if len(cobrador.clientes) != 0:
-                if len(self.transfer_frames) == 0:
-                        transferir_frame = CobradoresTransferirFrame(cobrador, self, -1, "")
-                        self.transfer_frames.append(transferir_frame)
-                        transferir_frame.Show()
+
+        if len(Cobradores) > 1:
+                cobrador = Cobradores[self.list_cobradores.GetFocusedItem()]
+                if len(cobrador.clientes) != 0:
+                        if len(self.transfer_frames) == 0:
+                                transferir_frame = CobradoresTransferirFrame(cobrador, self, -1, "")
+                                self.transfer_frames.append(transferir_frame)
+                                transferir_frame.Show()
+                else:
+                        Cobradores.remove(cobrador)
+                        data.save()
+                        self.update()
         else:
-                Cobradores.remove(cobrador)
-                data.save()
-                self.update()
+                msg = "No puede eliminar el ultimo cobrador si tiene clientes asignados, para eliminarlo debe crear mas cobradores a los que transferir los clientes"
+                error_dialog = wx.MessageDialog(self, msg, "Error", style=wx.ICON_ERROR)
+                error_dialog.ShowModal()
+                error_dialog.Destroy()
 
     def OnCerrar(self, event): # wxGlade: CobradoresFrame.<event_handler>
         self.Close()
