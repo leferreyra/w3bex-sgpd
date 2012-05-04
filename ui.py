@@ -369,9 +369,15 @@ class NuevoClienteFrame(wx.Frame):
 
         self.combo_cobrador.Clear()
         global Cobradores
-        for x in Cobradores:
-                self.combo_cobrador.Append(x.nombre)
-        self.combo_cobrador.SetSelection(0)
+        if len(Cobradores) != 0:
+                for x in Cobradores:
+                        self.combo_cobrador.Append(x.nombre)
+                self.combo_cobrador.SetSelection(0)
+        else:
+                error_dialog = wx.MessageDialog(self, "Debes crear por lo menos un cobrador para crear un cliente.", "Advertencia", wx.ICON_INFORMATION)
+                error_dialog.ShowModal()
+                error_dialog.Destroy()
+                self.Close()
 
     def __set_properties(self):
         # begin wxGlade: NuevoClienteFrame.__set_properties
@@ -780,23 +786,22 @@ class CobradoresFrame(wx.Frame):
     def OnQuitar(self, event): # wxGlade: CobradoresFrame.<event_handler>
         
         global Cobradores, data
-
-        if len(Cobradores) > 1:
-                cobrador = Cobradores[self.list_cobradores.GetFocusedItem()]
-                if len(cobrador.clientes) != 0:
+        cobrador = Cobradores[self.list_cobradores.GetFocusedItem()]
+        if len(cobrador.clientes) != 0:
+                if len(Cobradores) > 1:
                         if len(self.transfer_frames) == 0:
                                 transferir_frame = CobradoresTransferirFrame(cobrador, self, -1, "")
                                 self.transfer_frames.append(transferir_frame)
                                 transferir_frame.Show()
                 else:
-                        Cobradores.remove(cobrador)
-                        data.save()
-                        self.update()
+                        msg = "No puede eliminar el ultimo cobrador si tiene clientes asignados, para eliminarlo debe crear mas cobradores a los que transferir los clientes"
+                        error_dialog = wx.MessageDialog(self, msg, "Error", style=wx.ICON_ERROR)
+                        error_dialog.ShowModal()
+                        error_dialog.Destroy()
         else:
-                msg = "No puede eliminar el ultimo cobrador si tiene clientes asignados, para eliminarlo debe crear mas cobradores a los que transferir los clientes"
-                error_dialog = wx.MessageDialog(self, msg, "Error", style=wx.ICON_ERROR)
-                error_dialog.ShowModal()
-                error_dialog.Destroy()
+                Cobradores.remove(cobrador)
+                data.save()
+                self.update()
 
     def OnCerrar(self, event): # wxGlade: CobradoresFrame.<event_handler>
         self.Close()
