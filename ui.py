@@ -460,7 +460,7 @@ class NuevoClienteFrame(wx.Frame):
         # end wxGlade
 
     def OnCrearCliente(self, event): # wxGlade: NuevoClienteFrame.<event_handler>
-        if self.text_nombre.GetValue() != "":
+        if self.text_nombre.GetValue() != "" and self.text_direccion.GetValue() != "":
                 global Clientes, data
 
                 nombre = self.text_nombre.GetValue()
@@ -513,7 +513,7 @@ class NuevoClienteFrame(wx.Frame):
                 self.parent.update()
                 self.Close()
         else:
-                msj = "Como minimo debe especificar el nombre del cliente."
+                msj = "Como minimo debe especificar el nombre del cliente y su dirección."
                 error_dialog = wx.MessageDialog(self, msj, "Error", style = wx.ICON_ERROR)
                 error_dialog.ShowModal()
         
