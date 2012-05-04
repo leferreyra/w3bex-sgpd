@@ -137,7 +137,12 @@ class CargarPagoFrame(wx.Frame):
     def SetCobrador(self, cobrador):
         self.cobrador = cobrador
         self.cc = 0 # indice al cliente actual
-        self.SetClienteInfo(self.cobrador.clientes[0])
+
+        # Por si los primeros clientes del cobrador tienen saldo 0
+        while (self.cc < len(self.cobrador.clientes)) and (self.cobrador.clientes[self.cc].saldo == 0):
+                self.cc += 1
+
+        self.SetClienteInfo(self.cobrador.clientes[self.cc])
 
     def OnCargar(self, event): # wxGlade: CargarPagoFrame.<event_handler>
         self.parent.pagos.append([self.cobrador.clientes[self.cc], float(self.text_cuota.GetValue())])
