@@ -9,7 +9,7 @@
 
 # Archivos de imagenes
 
-img/*
+img/*.svg
 
 # Archivos de datos y backup
 
