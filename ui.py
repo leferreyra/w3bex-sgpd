@@ -648,23 +648,42 @@ class ProductosFrame(wx.Frame):
 
     def OnAgregar(self, event): # wxGlade: ProductosFrame.<event_handler>
         if self.text_nombre.GetValue() != "" and self.text_precio.GetValue() != "":
-                try:        
-                        producto = self.text_nombre.GetValue()
-                        precio = float(self.text_precio.GetValue())
-                        cuotas = int(self.spin_cuotas.GetValue())
 
-                        self.parent.AgregarItemProducto(producto, precio, cuotas, event)
-                        self.Close()
+                producto = self.text_nombre.GetValue()                        
+                try:        
+                        cuotas = int(self.spin_cuotas.GetValue())
                 except:
-                        msj = "El campo precio debe ser un numero"
+                        msj = "El campo cuotas debe tener un numero entero mayor a 0"
                         error_dialog = wx.MessageDialog(self, msj, "Error", style = wx.ICON_ERROR)
                         error_dialog.ShowModal()
+                        error_dialog.Destroy()
+                try:
+                        precio = float(self.text_precio.GetValue())
+                except:
+                        msj = "El campo precio debe ser un numero mayor a 0"
+                        error_dialog = wx.MessageDialog(self, msj, "Error", style = wx.ICON_ERROR)
+                        error_dialog.ShowModal()
+                        error_dialog.Destroy()
 
+                if cuotas > 0 and precio > 0:
+                        self.parent.AgregarItemProducto(producto, precio, cuotas, event)
+                        self.Close()
+                else: 
+                        msj = ""
+                        if precio <= 0: 
+                                msj += "El campo precio debe ser mayor a 0 "
+                        if cuotas <= 0:
+                                msj += "El campo cuotas debe tener un numero entero mayor a 0"
+
+                        error_dialog = wx.MessageDialog(self, msj, "Error", style = wx.ICON_ERROR)
+                        error_dialog.ShowModal()
+                        error_dialog.Destroy()
         else:
 
                 msj = "Debe completar todos los campos para continuar."
                 error_dialog = wx.MessageDialog(self, msj, "Error", style = wx.ICON_ERROR)
                 error_dialog.ShowModal()
+                error_dialog.Destroy()
 
         
 # end of class ProductosFrame
