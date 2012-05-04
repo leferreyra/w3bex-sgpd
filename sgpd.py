@@ -68,35 +68,37 @@ class Cliente(object):
 			return False
 
 	def pagar(self, monto):
-		b = self.GetMinProd()
-		for p in self.productos:
-			a = self.GetMaxProdAtr() # Primero cobramos los atrasos, del mas atrasado al menos atrasado.
-			if monto >= a.saldo_atrasado and a.saldo_atrasado > 0:
-				#print "pagando %g atrazo del producto %s" % (a.saldo_atrasado, a.nombre)
-				monto -= a.saldo_atrasado
-				a.pagar(a.cuotas_atrasadas)
+		if monto <= self.saldo:
+			b = self.GetMinProd()
+			for p in self.productos:
+				a = self.GetMaxProdAtr() # Primero cobramos los atrasos, del mas atrasado al menos atrasado.
+				if monto >= a.saldo_atrasado and a.saldo_atrasado > 0:
+					#print "pagando %g atrazo del producto %s" % (a.saldo_atrasado, a.nombre)
+					monto -= a.saldo_atrasado
+					a.pagar(a.cuotas_atrasadas)
+			
+			while monto > 0:
+				if monto >= b.cuota:
+					for p in self.productos:
+						if not p.esta_pagado:
+							if monto >= p.cuota:
+								#print "pagando %g por el producto %s por cuota nomal" % (p.cuota, p.nombre)
+								monto -= p.cuota
+								p.pagar()
+				else:
+					print "sobro %g" % monto
+					self.resto += monto
+					monto = 0
 
-		
-		while monto > 0:
-			if monto >= b.cuota:
-				for p in self.productos:
-					if not p.esta_pagado:
-						if monto >= p.cuota:
-							#print "pagando %g por el producto %s por cuota nomal" % (p.cuota, p.nombre)
-							monto -= p.cuota
-							p.pagar()
-			else:
-				print "sobro %g" % monto
-				self.resto += monto
-				monto = 0
-
-		# Si el resto alcanza para pagar la cuota mas barata.. la cobramos.
-		if self.resto >= b.cuota:
-			#print "lo que sobro del pago mas el resto %g alcanza para la cuota de %s" % ( self.resto, b.nombre)
-			self.resto -= b.cuota
-			b.pagar()
-
-
+			# Si el resto alcanza para pagar la cuota mas barata.. la cobramos.
+			if self.resto >= b.cuota:
+				#print "lo que sobro del pago mas el resto %g alcanza para la cuota de %s" % ( self.resto, b.nombre)
+				self.resto -= b.cuota
+				b.pagar()
+		else:
+			for i in self.productos:
+				i.cuotas_pagas = i.cuotas
+				self.resto = 0
 
 class Cobrador():
 	
