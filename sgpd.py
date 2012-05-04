@@ -49,7 +49,13 @@ class Cliente(object):
 
 	@property
 	def saldo_atrasado(self):
-		sa = self.resto
+		b = self.GetMinProd()
+		sa = 0
+
+		if self.resto > 0:
+			if b.cuota > self.resto:
+				sa += b.cuota - self.resto
+
 		for i in self.productos:
 			sa += i.cuotas_atrasadas * i.cuota
 		return sa
