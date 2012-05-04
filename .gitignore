@@ -15,3 +15,9 @@ img/*
 
 *.pkl
 *.bak
+
+
+# Archivos de documentacion e Instalacion
+
+docs/*
+installer/*
