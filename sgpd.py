@@ -161,7 +161,7 @@ class Producto(object):
 
 	@property
 	def cuota(self):
-		return self.precio / self.cuotas
+		return round(self.precio / self.cuotas, 2)
 
 	@property
 	def saldo(self):

@@ -363,7 +363,7 @@ class NuevoClienteFrame(wx.Frame):
 
         self.parent = args[0] # Referencia al frame padre 
         
-        self.list_productos.InsertColumn(0, "Producto")
+        self.list_productos.InsertColumn(0, "Producto", width = 270)
         self.list_productos.InsertColumn(1, "Precio")
         self.list_productos.InsertColumn(2, "Cuotas")
 
@@ -545,7 +545,7 @@ class NuevoClienteFrame(wx.Frame):
         itemid = self.list_productos.GetItemCount()
         self.list_productos.InsertStringItem(itemid,  "%s" % producto)
         self.list_productos.SetStringItem(itemid, 1, "$%g" % precio)
-        self.list_productos.SetStringItem(itemid, 2, "%g ($%d)" % (cuotas, precio / cuotas))
+        self.list_productos.SetStringItem(itemid, 2, "%g ($%g)" % (cuotas, round(precio / cuotas, 2)))
 
         self.updateSaldo()
 
