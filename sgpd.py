@@ -33,8 +33,8 @@ class Cliente(object):
 			if (i.cuotas_pagas + i.cuotas_atrasadas + 1) < i.cuotas:
 				c += i.cuota
 			else:
-				if self.resto > 0 :
-					c += (i.cuota - self.resto)
+				if round(self.resto,2) > 0 :
+					c += (i.cuota - round(self.resto,2))
 				else:
 					c += i.cuota
 
@@ -52,9 +52,9 @@ class Cliente(object):
 		b = self.GetMinProd()
 		sa = 0
 
-		if self.resto > 0:
+		if round(self.resto,1) > 0:
 			if b.cuota > self.resto:
-				sa += b.cuota - self.resto
+				sa += b.cuota - round(self.resto,2)
 
 		for i in self.productos:
 			sa += i.cuotas_atrasadas * i.cuota
@@ -90,15 +90,20 @@ class Cliente(object):
 					self.resto += monto
 					monto = 0
 
-			# Si el resto alcanza para pagar la cuota mas barata.. la cobramos.
-			if self.resto >= b.cuota:
-				#print "lo que sobro del pago mas el resto %g alcanza para la cuota de %s" % ( self.resto, b.nombre)
-				self.resto -= b.cuota
-				b.pagar()
+			# Si el resto alcanza para pagar la cuota de algun producto, lo cobramos
+			# si el producto no esta pago todavia.
+			for i in self.productos:
+                                if round(self.resto,2) >= i.cuota and not i.esta_pagado:
+                                        self.resto -= i.cuota
+                                        i.pagar()
+			
 		else:
 			for i in self.productos:
 				i.cuotas_pagas = i.cuotas
 				self.resto = 0
+				
+		# Arreglar algun minimo percance con los valores reales.
+                self.resto = round(self.resto, 2)
 
 class Cobrador():
 	
