@@ -291,7 +291,7 @@ class CobradoresTransferirFrame(wx.Frame):
         
         if opcion == 0:
                 # Repartir los clientes entre los demas
-                print "Repartiendo entre clientes..."
+                #print "Repartiendo entre clientes..."
 
                 while len(self.cobrador.clientes) > 0:
                         for x in Cobradores:
@@ -302,13 +302,13 @@ class CobradoresTransferirFrame(wx.Frame):
         elif opcion == 1:
                 # Pasar al que tiene menos
                 m = min(Cobradores, key = lambda x: len(x.clientes))
-                print "el cobrador que menos clientes tiene es %s" % m.nombre
+                #print "el cobrador que menos clientes tiene es %s" % m.nombre
                 for c in self.cobrador.clientes:
                         c.cobrador = m
                         m.clientes.append(c)
 
         else:
-                print "Transfiriendo al cobrador: %s" % self.opciones[opcion - 2].nombre
+                #print "Transfiriendo al cobrador: %s" % self.opciones[opcion - 2].nombre
                 for c in self.cobrador.clientes:
                         c.cobrador = self.opciones[opcion - 2]
                         self.opciones[opcion - 2].clientes.append(c)

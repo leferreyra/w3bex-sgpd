@@ -86,7 +86,7 @@ class Cliente(object):
 								monto -= p.cuota
 								p.pagar()
 				else:
-					print "sobro %g" % monto
+					#print "sobro %g" % monto
 					self.resto += monto
 					monto = 0
 
